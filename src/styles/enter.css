@@ -1,0 +1,25 @@
+.enter-wrapper {
+  position: fixed;
+  inset: 0;
+  background: black;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.enter-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.enter-content h1 {
+  font-size: clamp(3rem, 8vw, 5rem);
+}
+
+.enter-content p {
+  opacity: 0.6;
+}
