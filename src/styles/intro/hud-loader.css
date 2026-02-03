@@ -1,0 +1,154 @@
+.hud-root {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #0a0a0a, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  color: white;
+}
+
+/* CENTER */
+.hud-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+/* ===== RADIAL PROGRESS ===== */
+.hud-progress {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+}
+
+.progress-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 2;
+}
+
+.progress-bar {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 3;
+  stroke-dasharray: 540;
+  transition: stroke-dashoffset 0.1s linear;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  filter: drop-shadow(0 0 4px rgba(255, 50, 50, 0.4));
+}
+
+/* ===== HUD DIAL ===== */
+.hud-dial {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.dial-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.ticks {
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  animation: spin 9s linear infinite;
+}
+
+.sweep {
+  inset: 18px;
+  border-top: 2px solid white;
+  border-left: 2px solid transparent;
+  animation: spin 4s linear infinite;
+}
+
+.micro {
+  inset: 40px;
+  border: 1px dotted rgba(255, 255, 255, 0.25);
+  animation: spinReverse 6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* ===== RED NEON CORE ===== */
+.hud-core {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ff2a2a;
+  border-radius: 50%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  box-shadow:
+    0 0 6px #ff2a2a,
+    0 0 12px rgba(255, 40, 40, 0.6),
+    0 0 20px rgba(255, 40, 40, 0.3);
+
+  animation: coreBlink 1.4s ease-in-out infinite;
+}
+
+@keyframes coreBlink {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* ===== PERCENT ===== */
+.hud-percent {
+  font-size: 2.6rem;
+  letter-spacing: 0.25em;
+}
+
+/* ===== SEGMENT BAR ===== */
+.hud-bars {
+  display: flex;
+  gap: 5px;
+}
+
+.bar {
+  width: 9px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.bar.active {
+  background: white;
+}
+
+.bar.active:nth-child(5n) {
+  background: #ff2a2a;
+}
+
+/* ===== MICRO TEXT ===== */
+.hud-micro {
+  display: flex;
+  gap: 20px;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  opacity: 0.55;
+}

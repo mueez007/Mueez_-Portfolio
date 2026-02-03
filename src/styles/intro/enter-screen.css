@@ -1,0 +1,69 @@
+.enter-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* particle layer */
+.enter-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* UI layer */
+.enter-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  user-select: none;
+}
+
+.enter-text {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  letter-spacing: 0.35em;
+  font-weight: 500;
+}
+
+.enter-dots {
+  display: flex;
+  margin-top: 14px;
+}
+
+.enter-dots span {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  margin: 0 4px;
+  opacity: 0;
+  animation: dotPulse 1.6s infinite;
+}
+
+.enter-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.enter-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.enter-subtext {
+  margin-top: 18px;
+  font-size: 0.7rem;
+  opacity: 0.6;
+  letter-spacing: 0.18em;
+}
+
+@keyframes dotPulse {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
