@@ -1,9 +1,24 @@
+import { useState } from "react";
 import "../../styles/intro/enter-screen.css";
+import "../../styles/intro/fade.css";
 import Particles from "../Particles";
 
 export default function EnterScreen({ onEnter }) {
+  const [fadeOut, setFadeOut] = useState(false);
+
+  const handleClick = () => {
+    setFadeOut(true);
+
+    setTimeout(() => {
+      onEnter();
+    }, 800); // match fade duration
+  };
+
   return (
-    <div className="enter-screen" onClick={onEnter}>
+    <div
+      className={`enter-screen fade-layer ${fadeOut ? "fade-out" : ""}`}
+      onClick={handleClick}
+    >
       {/* Particle Background */}
       <div className="enter-particles">
         <Particles />

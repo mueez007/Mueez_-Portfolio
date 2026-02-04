@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import "../../styles/intro/hud-loader.css";
+import "../../styles/intro/fade.css";
 
 export default function HudLoader({ onComplete }) {
   const [progress, setProgress] = useState(0);
+  const [fadeOut, setFadeOut] = useState(false);
   const startRef = useRef(null);
 
   useEffect(() => {
@@ -19,7 +21,13 @@ export default function HudLoader({ onComplete }) {
       if (pct < 100) {
         requestAnimationFrame(loop);
       } else {
-        setTimeout(onComplete, 400);
+        // start fade out
+        setFadeOut(true);
+
+        // wait for fade animation
+        setTimeout(() => {
+          onComplete();
+        }, 800);
       }
     };
 
@@ -27,7 +35,7 @@ export default function HudLoader({ onComplete }) {
   }, [onComplete]);
 
   return (
-    <div className="hud-root">
+    <div className={`hud-root fade-layer ${fadeOut ? "fade-out" : ""}`}>
       <div className="hud-center">
 
         {/* RADIAL PROGRESS */}

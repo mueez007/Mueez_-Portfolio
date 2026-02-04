@@ -1,33 +1,39 @@
+import Navbar from "./Navbar";
 import "../styles/MainPage.css";
-import useGsapReveal from "../hooks/useGsapReveal";
 
 export default function MainPage() {
-  useGsapReveal();
-
   return (
-    <main className="main-page">
-      {/* HERO */}
-      <section className="hero">
-        <h1 className="hero-title reveal delay-1">Your Name</h1>
-        <p className="hero-subtitle reveal delay-2">
-          AI / ML Student · Developer · Creator
-        </p>
-      </section>
+    <>
+      <Navbar />
 
-      {/* ABOUT */}
-      <section className="section gsap-reveal">
-        <h2>About</h2>
-        <p>
-          I’m an AI/ML student focused on intelligent systems, modern web
-          experiences, and creative engineering.
-        </p>
-      </section>
+      <section className="main-page" id="home">
+        <div className="hero-content">
 
-      {/* PROJECTS */}
-      <section className="section gsap-reveal">
-        <h2>Projects</h2>
-        <p>Selected works and experiments.</p>
+          <h1 className="main-title">
+            Mohammed Huzaif Mueez
+          </h1>
+
+          <p className="main-subtitle">
+            AI/ML Developer • Full-Stack Builder
+          </p>
+
+          <p className="main-desc">
+            I design and build intelligent systems, futuristic interfaces,
+            and AI-powered digital experiences that feel premium and human.
+          </p>
+
+          <div className="hero-buttons">
+            <button className="btn-primary">
+              View Projects
+            </button>
+
+            <button className="btn-outline">
+              Contact Me
+            </button>
+          </div>
+
+        </div>
       </section>
-    </main>
+    </>
   );
 }

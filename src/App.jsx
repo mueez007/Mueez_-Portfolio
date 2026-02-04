@@ -1,10 +1,11 @@
 import IntroLayer from "./components/intro/IntroLayer";
-import Cursor from "./components/Cursor";
+import UltraCursor from "./components/UltraCursor";
+
 
 export default function App() {
   return (
     <>
-      <Cursor />
+      <UltraCursor />
       <IntroLayer />
     </>
   );

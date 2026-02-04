@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../../styles/intro/welcome-overlay.css";
+import "../../styles/intro/fade.css";
 import LightRays from "../LightRays";
 import welcomeSound from "../../assets/sounds/welcome.mp3";
 
 export default function WelcomeOverlay({ onComplete }) {
   const audioRef = useRef(null);
+  const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
     const audio = new Audio(welcomeSound);
@@ -14,7 +16,13 @@ export default function WelcomeOverlay({ onComplete }) {
     audio.play().catch(() => { });
 
     const timer = setTimeout(() => {
-      onComplete();
+      // start fade out
+      setFadeOut(true);
+
+      // wait for fade animation
+      setTimeout(() => {
+        onComplete();
+      }, 800);
     }, 4000);
 
     return () => {
@@ -25,7 +33,7 @@ export default function WelcomeOverlay({ onComplete }) {
   }, [onComplete]);
 
   return (
-    <div className="welcome-overlay">
+    <div className={`welcome-overlay fade-layer ${fadeOut ? "fade-out" : ""}`}>
 
       {/* LIGHT RAYS BACKGROUND */}
       <div className="welcome-rays">
