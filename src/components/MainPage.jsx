@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import HeroSpline from "./HeroSpline";
 import "../styles/MainPage.css";
 
 export default function MainPage() {
@@ -7,8 +8,11 @@ export default function MainPage() {
       <Navbar />
 
       <section className="main-page" id="home">
-        <div className="hero-content">
 
+        {/* SPLINE BACKGROUND */}
+        <HeroSpline />
+
+        <div className="hero-content">
           <h1 className="main-title">
             Mohammed Huzaif Mueez
           </h1>
@@ -31,8 +35,8 @@ export default function MainPage() {
               Contact Me
             </button>
           </div>
-
         </div>
+
       </section>
     </>
   );
