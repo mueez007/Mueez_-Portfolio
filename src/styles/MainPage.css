@@ -5,14 +5,14 @@
   background: black;
 }
 
-/* SPLINE BACKGROUND */
+/* SPLINE BG */
 .spline-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-/* HERO CONTENT */
+/* HERO */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -34,19 +34,16 @@
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 700;
   color: white;
-  letter-spacing: -1px;
 }
 
 .main-subtitle {
   margin-top: 10px;
   color: #aaa;
-  font-size: 1.2rem;
 }
 
 .main-desc {
   margin-top: 15px;
   color: #777;
-  line-height: 1.6;
 }
 
 /* BUTTONS */
@@ -65,7 +62,6 @@
   border-radius: 30px;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .btn-primary:hover {
@@ -79,8 +75,6 @@
   padding: 14px 28px;
   border-radius: 30px;
   border: 1px solid #555;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
 .btn-outline:hover {
@@ -88,7 +82,7 @@
   box-shadow: 0 0 20px rgba(255,255,255,0.4);
 }
 
-/* SOCIAL ICONS */
+/* SOCIAL */
 .social-btn {
   width: 48px;
   height: 48px;
@@ -98,8 +92,6 @@
   align-items: center;
   justify-content: center;
   color: white;
-  transition: 0.3s;
-  text-decoration: none;
 }
 
 .social-btn svg {
@@ -113,7 +105,7 @@
   transform: translateY(-2px);
 }
 
-/* SCROLL INDICATOR */
+/* SCROLL */
 .scroll-indicator {
   position: absolute;
   bottom: 40px;
@@ -123,6 +115,7 @@
   height: 45px;
   border: 2px solid #555;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .scroll-dot {

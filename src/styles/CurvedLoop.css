@@ -1,0 +1,24 @@
+.curved-loop-jacket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* KEY FIXES */
+  height: 200px;
+  margin: 0;
+  padding: 0;
+
+  overflow: visible;
+}
+
+.curved-loop-svg {
+  width: 100%;
+  height: 200px;
+
+  fill: white;
+
+  font-size: 5rem;
+  font-weight: 700;
+
+  overflow: visible;
+}

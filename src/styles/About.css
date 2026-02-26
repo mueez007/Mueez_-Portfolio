@@ -1,0 +1,105 @@
+.about-section {
+  min-height: 100vh;
+  background: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+
+  /* FIX SPACING */
+  padding: 0 10%;
+  margin-top: -40px;
+
+  color: white;
+}
+
+/* PHOTO SIDE */
+.about-photo {
+  position: relative;
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: 1s ease;
+}
+
+.about-photo.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.about-photo img {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+}
+
+/* PURPLE RING */
+.photo-ring {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #8a2be2, #a855f7, #8a2be2);
+  filter: blur(25px);
+  opacity: 0.75;
+  animation: rotateGlow 8s linear infinite;
+}
+
+@keyframes rotateGlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* TEXT SIDE */
+.about-text {
+  max-width: 520px;
+  opacity: 0;
+  transform: translateX(60px);
+  transition: 1s ease;
+  position: relative;
+}
+
+.about-text.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* SUBTLE TEXT GLOW BG */
+.about-text::before {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  background: radial-gradient(circle, rgba(168,85,247,0.18), transparent 70%);
+  z-index: -1;
+}
+
+.about-text h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  color: #aaa;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .about-text {
+    transform: translateY(40px);
+  }
+
+  .about-text.show {
+    transform: translateY(0);
+  }
+}
