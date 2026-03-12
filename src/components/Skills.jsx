@@ -22,6 +22,25 @@ const SKILLS = [
   { name: "SQL", color: "#4479a1" },
 ];
 
+/* ── CDN icon URLs (devicon) ──────────────────────────────── */
+const SKILL_ICONS = {
+  JavaScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  HTML: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+  CSS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+  React: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+  Python: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  Git: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+  MongoDB: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+  TypeScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+  Figma: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+  Java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+  "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+  TensorFlow: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
+  Docker: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+  SQL: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+};
+
 /* ── helper: create a text-label billboard sprite ───────────── */
 function makeLabel(text) {
   const canvas = document.createElement("canvas");
@@ -38,6 +57,58 @@ function makeLabel(text) {
   const spr = new THREE.Sprite(mat);
   spr.scale.set(1.4, 0.35, 1);
   return spr;
+}
+
+/* ── helper: load a skill icon and apply as texture to a mesh ── */
+function applyLogoTexture(ball, skillName, fallbackColor) {
+  const url = SKILL_ICONS[skillName];
+  if (!url) return;
+
+  const img = new Image();
+  img.crossOrigin = "anonymous";
+  img.onload = () => {
+    const size = 256;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+
+    // Dark circular background
+    ctx.fillStyle = "#181818";
+    ctx.fillRect(0, 0, size, size);
+
+    // Draw logo centered
+    const pad = 48;
+    ctx.drawImage(img, pad, pad, size - pad * 2, size - pad * 2);
+
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.needsUpdate = true;
+    ball.material.map = tex;
+    ball.material.color.set(0xffffff);
+    ball.material.emissive.set(0x000000);
+    ball.material.emissiveIntensity = 0;
+    ball.material.needsUpdate = true;
+  };
+  img.onerror = () => {
+    // Fallback: draw initial letter on canvas
+    const size = 256;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = fallbackColor;
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 120px system-ui,sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(skillName[0], size / 2, size / 2);
+
+    const tex = new THREE.CanvasTexture(canvas);
+    ball.material.map = tex;
+    ball.material.needsUpdate = true;
+  };
+  img.src = url;
 }
 
 /* ── fibonacci sphere: uniform point distribution ───────────── */
@@ -114,7 +185,7 @@ export default function Skills() {
         clearcoat: 1.0,
         clearcoatRoughness: 0.1,
         emissive: new THREE.Color(skill.color),
-        emissiveIntensity: 0.25,
+        emissiveIntensity: 0.6,
         transparent: true,
         opacity: 0.92,
       });
@@ -122,17 +193,8 @@ export default function Skills() {
       ball.position.copy(positions[i]);
       group.add(ball);
 
-      /* ── glow halo around ball ────────────── */
-      const glowGeo = new THREE.SphereGeometry(0.5, 16, 16);
-      const glowMat = new THREE.MeshBasicMaterial({
-        color: new THREE.Color(skill.color),
-        transparent: true,
-        opacity: 0.08,
-        side: THREE.BackSide,
-      });
-      const glow = new THREE.Mesh(glowGeo, glowMat);
-      glow.position.copy(positions[i]);
-      group.add(glow);
+      /* ── apply logo texture ────────────────── */
+      applyLogoTexture(ball, skill.name, skill.color);
 
       /* ── text label floating above ball ──── */
       const label = makeLabel(skill.name);
@@ -141,15 +203,7 @@ export default function Skills() {
       group.add(label);
     });
 
-    /* ── wireframe outer sphere (subtle) ──────── */
-    const wireGeo = new THREE.IcosahedronGeometry(RADIUS + 0.6, 1);
-    const wireMat = new THREE.MeshBasicMaterial({
-      color: 0xa855f7,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.06,
-    });
-    group.add(new THREE.Mesh(wireGeo, wireMat));
+
 
     /* ── floating particles throughout scene ──── */
     const pCount = 500;

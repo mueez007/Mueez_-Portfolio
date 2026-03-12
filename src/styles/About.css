@@ -28,8 +28,8 @@
 }
 
 .about-photo img {
-  width: 240px;
-  height: 240px;
+  width: 340px;
+  height: 340px;
   object-fit: cover;
   border-radius: 50%;
   position: relative;
@@ -39,8 +39,8 @@
 /* PURPLE RING */
 .photo-ring {
   position: absolute;
-  width: 260px;
-  height: 260px;
+  width: 370px;
+  height: 370px;
   border-radius: 50%;
   background: linear-gradient(45deg, #8a2be2, #a855f7, #8a2be2);
   filter: blur(25px);

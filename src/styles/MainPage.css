@@ -65,7 +65,7 @@
 }
 
 .btn-primary:hover {
-  box-shadow: 0 0 25px rgba(255,255,255,0.6);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
   transform: translateY(-2px);
 }
 
@@ -79,7 +79,29 @@
 
 .btn-outline:hover {
   border-color: white;
-  box-shadow: 0 0 20px rgba(255,255,255,0.4);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* DOWNLOAD RESUME */
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.btn-download:hover {
+  box-shadow: 0 0 28px rgba(168, 85, 247, 0.7);
+  transform: translateY(-2px);
 }
 
 /* SOCIAL */
@@ -101,7 +123,7 @@
 
 .social-btn:hover {
   border-color: white;
-  box-shadow: 0 0 20px rgba(255,255,255,0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
 }
 
@@ -128,6 +150,13 @@
 }
 
 @keyframes scrollMove {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(18px); opacity: 0; }
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(18px);
+    opacity: 0;
+  }
 }

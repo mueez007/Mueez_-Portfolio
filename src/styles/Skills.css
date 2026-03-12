@@ -58,8 +58,8 @@
 
 /* ── canvas container ──────────────────────────────────────── */
 .skills-canvas-wrap {
-  width: min(700px, 90vw);
-  height: min(700px, 90vw);
+  width: min(900px, 95vw);
+  height: min(800px, 85vw);
   position: relative;
   z-index: 1;
   cursor: grab;

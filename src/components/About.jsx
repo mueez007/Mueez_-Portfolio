@@ -37,11 +37,22 @@ export default function About() {
         </h2>
 
         <p>
-          I'm Mohammed Huzaif Mueez, an AI/ML developer and full-stack builder.
+          I'm Mohammed Huzaif Mueez — an AI/ML developer and full-stack builder
+          with a passion for turning ideas into intelligent, production-ready
+          applications.
         </p>
 
         <p>
-          I blend AI with modern UI to build premium experiences.
+          From deep-learning models to sleek React interfaces, I love working
+          across the entire stack. I specialise in Python, JavaScript, and modern
+          frameworks like TensorFlow, Node.js, and React to craft experiences
+          that feel both powerful and effortless.
+        </p>
+
+        <p>
+          When I'm not coding, you'll find me exploring the latest in generative
+          AI, contributing to open-source, or designing cinematic UI concepts
+          that push creative boundaries.
         </p>
       </div>
     </section>
