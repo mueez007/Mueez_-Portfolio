@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import "../styles/About.css";
 import ShinyText from "./ShinyText";
+import CircularText from "./CircularText";
 
 export default function About() {
   const imgRef = useRef(null);
@@ -24,6 +25,11 @@ export default function About() {
       <div className="about-photo" ref={imgRef}>
         <div className="photo-ring"></div>
         <img src="/profile.png" alt="profile" />
+        <CircularText
+          text="MOHAMMED*HUZAIF*MUEEZ*"
+          onHover="speedUp"
+          spinDuration={15}
+        />
       </div>
 
       <div className="about-text" ref={textRef}>

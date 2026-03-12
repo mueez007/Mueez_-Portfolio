@@ -12,6 +12,18 @@
   z-index: 0;
 }
 
+/* Hide Spline watermark */
+.spline-bg a[href*="spline"],
+.spline-bg>div>a,
+.spline-bg canvas+a,
+.spline-bg canvas~a,
+.spline-bg canvas~div a {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
 /* HERO */
 .hero-content {
   position: relative;

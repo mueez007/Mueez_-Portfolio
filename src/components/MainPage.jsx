@@ -28,7 +28,20 @@ export default function MainPage() {
       {/* HERO */}
       <section className="main-page" id="home">
         <div className="spline-bg">
-          <Spline scene="https://prod.spline.design/1a6tyLU2Fu3yb4WQ/scene.splinecode" />
+          <Spline
+            scene="https://prod.spline.design/1a6tyLU2Fu3yb4WQ/scene.splinecode"
+            onLoad={(splineApp) => {
+              // Remove "Built with Spline" watermark
+              const container = splineApp?.parentElement || document.querySelector('.spline-bg');
+              if (container) {
+                const links = container.querySelectorAll('a');
+                links.forEach(a => { a.style.display = 'none'; });
+                // Also check for the logo img
+                const logos = container.querySelectorAll('img[alt*="logo"], img[src*="spline"]');
+                logos.forEach(el => { el.style.display = 'none'; });
+              }
+            }}
+          />
         </div>
 
         <div className={`hero-content ${show ? "show" : ""}`}>

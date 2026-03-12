@@ -20,6 +20,9 @@
   opacity: 0;
   transform: translateX(-60px);
   transition: 1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .about-photo.show {
@@ -49,8 +52,13 @@
 }
 
 @keyframes rotateGlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* TEXT SIDE */
@@ -72,7 +80,7 @@
   content: "";
   position: absolute;
   inset: -25px;
-  background: radial-gradient(circle, rgba(168,85,247,0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.18), transparent 70%);
   z-index: -1;
 }
 
