@@ -1,15 +1,13 @@
 .about-section {
-  min-height: 100vh;
+  position: relative;
+  padding: 80px 10%;
+  margin-top: -60px; /* Pulls closer to CurvedLoop */
   background: black;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 80px;
-
-  /* FIX SPACING */
-  padding: 0 10%;
-  margin-top: -40px;
 
   color: white;
 }

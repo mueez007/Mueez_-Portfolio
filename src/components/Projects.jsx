@@ -14,7 +14,7 @@ const PROJECTS = [
         tags: ["Python", "Django", "DRF", "React.js", "TensorFlow/Keras", "Scikit-learn", "Gemini API"],
         frontpage: "/projects/krishi-sakhi/frontpage.jpg",
         images: ["/projects/krishi-sakhi/frontpage.jpg", "/projects/krishi-sakhi/1.jpg", "/projects/krishi-sakhi/2.jpg", "/projects/krishi-sakhi/3.jpg", "/projects/krishi-sakhi/4.jpg"],
-        github: "https://github.com/mueez007",
+        github: "https://github.com/mueez007/krishi-sakhi-ai-assistant.git",
     },
     {
         id: "carpulse-ai",
@@ -26,7 +26,7 @@ const PROJECTS = [
         tags: ["FastAPI", "React.js", "PostgreSQL", "Scikit-learn", "Docker"],
         frontpage: "/projects/carpulse-ai/frontpage.jpg",
         images: ["/projects/carpulse-ai/frontpage.jpg", "/projects/carpulse-ai/1.jpg", "/projects/carpulse-ai/2.jpg", "/projects/carpulse-ai/3.jpg", "/projects/carpulse-ai/4.jpg", "/projects/carpulse-ai/5.jpg", "/projects/carpulse-ai/6.jpg", "/projects/carpulse-ai/7.jpg"],
-        github: "https://github.com/mueez007",
+        github: "https://github.com/mueez007/Carpulse-Ai.git",
     },
     {
         id: "carepulse-ai",
@@ -38,7 +38,7 @@ const PROJECTS = [
         tags: ["Python", "AI/ML", "React.js", "Health Tech", "Conversational AI", "Voice Assistant"],
         frontpage: "/projects/carepulse-ai/frontpage.jpg",
         images: ["/projects/carepulse-ai/frontpage.jpg", "/projects/carepulse-ai/1.jpg", "/projects/carepulse-ai/2.jpg", "/projects/carepulse-ai/3.jpg", "/projects/carepulse-ai/4.jpg", "/projects/carepulse-ai/5.jpg", "/projects/carepulse-ai/6.jpg", "/projects/carepulse-ai/7.jpg", "/projects/carepulse-ai/8.jpg"],
-        github: "https://github.com/mueez007",
+        github: "https://github.com/mueez007/CarePluse-Ai.git",
     },
     {
         id: "edutrack",
@@ -50,7 +50,7 @@ const PROJECTS = [
         tags: ["Flutter", "Dart", "Firebase"],
         frontpage: "/projects/edutrack/frontpage.jpg",
         images: ["/projects/edutrack/frontpage.jpg", "/projects/edutrack/1.jpg", "/projects/edutrack/2.jpg", "/projects/edutrack/3.jpg", "/projects/edutrack/4.jpg", "/projects/edutrack/5.jpg", "/projects/edutrack/6.jpg", "/projects/edutrack/7.jpg", "/projects/edutrack/8.jpg", "/projects/edutrack/9.jpg", "/projects/edutrack/10.jpg", "/projects/edutrack/11.jpg", "/projects/edutrack/12.jpg"],
-        github: "https://github.com/mueez007",
+        github: "https://github.com/mueez007/EduTrack-College-Marks.git",
     },
     {
         id: "aerioai-drone",
@@ -62,7 +62,7 @@ const PROJECTS = [
         tags: ["Python", "Raspberry Pi", "OpenCV", "SpeedyBee F405 V5", "BN-880 GPS", "Gemini API", "INAV"],
         frontpage: "/projects/aerioai-drone/frontpage.png",
         images: ["/projects/aerioai-drone/frontpage.png", "/projects/aerioai-drone/1.jpg", "/projects/aerioai-drone/2.jpg", "/projects/aerioai-drone/3.jpg", "/projects/aerioai-drone/4.png", "/projects/aerioai-drone/5.png", "/projects/aerioai-drone/6.png", "/projects/aerioai-drone/7.png", "/projects/aerioai-drone/8.png"],
-        github: "https://github.com/mueez007",
+        github: "https://github.com/mueez007/AERIOAI-Drone.git",
     },
 ];
 
