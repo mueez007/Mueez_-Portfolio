@@ -63,7 +63,7 @@ const INFO = [
    ═══════════════════════════════════════════════════════════════ */
 export default function Contact() {
     const sectionRef = useRef(null);
-    const [sent, setSent] = useState(false);
+    const [status, setStatus] = useState("idle"); // 'idle' | 'submitting' | 'success' | 'error'
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -79,10 +79,34 @@ export default function Contact() {
         return () => observer.disconnect();
     }, []);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setSent(true);
-        setTimeout(() => setSent(false), 3000);
+        setStatus("submitting");
+
+        const formData = new FormData(e.target);
+        formData.append("access_key", "b09d4c8a-ea6a-4a76-8924-1368e8c119ff");
+
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+            
+            if (data.success) {
+                setStatus("success");
+                e.target.reset(); // clear the form
+            } else {
+                console.error("Form submission error", data);
+                setStatus("error");
+            }
+        } catch (error) {
+            console.error("Form submission error", error);
+            setStatus("error");
+        }
+
+        setTimeout(() => setStatus("idle"), 4000);
     };
 
     return (
@@ -121,29 +145,37 @@ export default function Contact() {
                 <form className="contact-form" onSubmit={handleSubmit}>
                     <div className="form-row">
                         <div className="form-group">
-                            <input type="text" placeholder="Your Name" required />
+                            <input type="text" name="name" placeholder="Your Name" required />
                         </div>
                         <div className="form-group">
-                            <input type="email" placeholder="Your Email" required />
+                            <input type="email" name="email" placeholder="Your Email" required />
                         </div>
                     </div>
 
                     <div className="form-group">
-                        <input type="text" placeholder="Subject" />
+                        <input type="text" name="subject" placeholder="Subject" />
                     </div>
 
                     <div className="form-group">
-                        <textarea rows="5" placeholder="Your Message..." required />
+                        <textarea name="message" rows="5" placeholder="Your Message..." required />
                     </div>
 
-                    <button type="submit" className="send-btn" disabled={sent}>
-                        {sent ? (
+                    <button 
+                        type="submit" 
+                        className="send-btn" 
+                        disabled={status === "submitting" || status === "success"}
+                    >
+                        {status === "submitting" ? (
+                            "Sending..."
+                        ) : status === "success" ? (
                             <>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M20 6L9 17l-5-5" />
                                 </svg>
                                 Sent!
                             </>
+                        ) : status === "error" ? (
+                            "Error! Try Again"
                         ) : (
                             <>
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
