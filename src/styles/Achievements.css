@@ -185,7 +185,7 @@
     padding: 8px 24px 0;
 }
 
-/* card image */
+/* card image — stacked crossfade */
 .achievement-card-image {
     position: relative;
     width: 100%;
@@ -194,16 +194,48 @@
     overflow: hidden;
 }
 
-.achievement-card-image img {
+.achievement-card-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                filter 0.6s ease;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.achievement-card-image img.zoomed {
+.achievement-card-img.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.achievement-card-img.zoomed {
     transform: scale(1.1);
+}
+
+/* small dots indicator on the card image */
+.achievement-card-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 4;
+}
+
+.achievement-card-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.4s ease;
+}
+
+.achievement-card-dot.active {
+    background: #a855f7;
+    box-shadow: 0 0 6px rgba(168, 85, 247, 0.7);
+    transform: scale(1.4);
 }
 
 .achievement-card-image-overlay {
@@ -219,6 +251,7 @@
     justify-content: flex-start;
     padding: 14px 18px;
     pointer-events: none;
+    z-index: 2;
 }
 
 .achievement-card-icon {

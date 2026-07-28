@@ -62,7 +62,17 @@ const ACHIEVEMENTS = [
    ACHIEVEMENT CARD (used in marquee)
    ═══════════════════════════════════════════════════════════════ */
 function AchievementCard({ achievement, onClick }) {
+    const [currentImg, setCurrentImg] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
+
+    /* Auto-cycle images every 2.5s */
+    useEffect(() => {
+        if (achievement.images.length <= 1) return;
+        const interval = setInterval(() => {
+            setCurrentImg((c) => (c + 1) % achievement.images.length);
+        }, 2500);
+        return () => clearInterval(interval);
+    }, [achievement.images.length]);
 
     return (
         <div
@@ -82,16 +92,27 @@ function AchievementCard({ achievement, onClick }) {
                 }}
             />
 
-            {/* Frontpage image */}
+            {/* Auto-cycling images */}
             <div className="achievement-card-image">
-                <img
-                    src={achievement.frontpage}
-                    alt={achievement.title}
-                    className={isHovered ? "zoomed" : ""}
-                />
+                {achievement.images.map((img, i) => (
+                    <img
+                        key={i}
+                        src={img}
+                        alt={`${achievement.title} - ${i + 1}`}
+                        className={`achievement-card-img ${i === currentImg ? "active" : ""} ${isHovered ? "zoomed" : ""}`}
+                    />
+                ))}
                 <div className="achievement-card-image-overlay">
                     <span className="achievement-card-icon">{achievement.icon}</span>
                 </div>
+                {/* Image counter dots */}
+                {achievement.images.length > 1 && (
+                    <div className="achievement-card-dots">
+                        {achievement.images.map((_, i) => (
+                            <span key={i} className={`achievement-card-dot ${i === currentImg ? "active" : ""}`} />
+                        ))}
+                    </div>
+                )}
             </div>
 
             <div className="achievement-card-body">
