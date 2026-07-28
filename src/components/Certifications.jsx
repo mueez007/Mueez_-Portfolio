@@ -5,39 +5,88 @@ import "../styles/Certifications.css";
 /* ── certification data (from resume) ──────────────────────── */
 const CERTIFICATIONS = [
     {
-        id: "oci-gen-ai",
+        id: "oci-gen-ai-2025",
         title: "Oracle Cloud Infrastructure 2025 – Generative AI Professional",
         issuer: "Oracle University",
-        image: null, // User will add certificate photo later
+        image: "/certs/Oracle Cloud Infrastructure 2025 – Generative AI Professional.png",
         color: "#f80000",
     },
     {
         id: "oci-ai-foundations",
         title: "Oracle Cloud Infrastructure – AI Foundations Associate",
         issuer: "Oracle University",
-        image: null,
+        image: "/certs/Oracle Cloud Infrastructure – AI Foundations Associate.png",
         color: "#f80000",
     },
     {
-        id: "ibm-ai",
-        title: "IBM Artificial Intelligence Fundamentals",
-        issuer: "IBM SkillsBuild",
-        image: null,
+        id: "ibm-data-science",
+        title: "IBM Data Science Fundamentals with Python and SQL",
+        issuer: "IBM",
+        image: "/certs/IBM Data Science Fundamentals with Python and SQL Specialization.png",
         color: "#054ada",
     },
     {
-        id: "ibm-data-science",
-        title: "IBM Data Science Fundamentals with Python & SQL",
+        id: "ibm-ml-python",
+        title: "Machine Learning with Python",
+        issuer: "IBM",
+        image: "/certs/Machine Learning with Python (IBM).png",
+        color: "#054ada",
+    },
+    {
+        id: "math-ml-linear-algebra",
+        title: "Mathematics for Machine Learning (Linear Algebra)",
         issuer: "Coursera",
-        image: null,
+        image: "/certs/Mathematics for Machine Learning (Linear Algebra).png",
         color: "#0056d2",
     },
     {
-        id: "math-ml",
-        title: "Mathematics for Machine Learning – Imperial College London",
+        id: "math-ml-multivariate-calculus",
+        title: "Mathematics for Machine Learning (Multivariate Calculus)",
         issuer: "Coursera",
-        image: null,
-        color: "#003e74",
+        image: "/certs/Mathematics for Machine Learning ( Multivariate Calculus).png",
+        color: "#0056d2",
+    },
+    {
+        id: "intro-gen-ai",
+        title: "Introduction to Generative AI",
+        issuer: "Duke University",
+        image: "/certs/Introduction to Generative AI (Duke University).png",
+        color: "#0056d2",
+    },
+    {
+        id: "tensorflow-advanced",
+        title: "TensorFlow & Advanced Techniques",
+        issuer: "Coursera",
+        image: "/certs/TensorFlow & Advanced Techniques.png",
+        color: "#ff6f00",
+    },
+    {
+        id: "aws-cloud-practitioner",
+        title: "AWS Cloud Practitioner Essentials",
+        issuer: "Amazon Web Services",
+        image: "/certs/AWS Cloud Practitioner Essentials.png",
+        color: "#ff9900",
+    },
+    {
+        id: "ms-ai-ml-algorithms",
+        title: "AI and Machine Learning Algorithms and Techniques",
+        issuer: "Microsoft",
+        image: "/certs/AI and Machine Learning Algorithms and Techniques (Microsoft).png",
+        color: "#00a4ef",
+    },
+    {
+        id: "infosys-llmops",
+        title: "Getting Started with Large Language Model Operations (LLMOps)",
+        issuer: "Infosys",
+        image: "/certs/Getting Started with Large Language Model Operations (LLMOps) – Infosys.png",
+        color: "#007cc3",
+    },
+    {
+        id: "agentic-ai",
+        title: "Agentic AI and AI Agents",
+        issuer: "Coursera",
+        image: "/certs/Agentic AI and AI Agents.png",
+        color: "#7c3aed",
     },
 ];
 
@@ -128,6 +177,19 @@ export default function Certifications() {
                         </div>
                     ))}
                 </div>
+
+                {/* View More Button */}
+                <a
+                    href="https://www.linkedin.com/in/mohammed-huzaif-mueez-5bb7892b2/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="view-more-certs-btn"
+                >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.94 6.5a2.44 2.44 0 110-4.88 2.44 2.44 0 010 4.88zM4.5 8.5h4.88V20H4.5zM9.75 8.5h4.68v1.56h.07c.65-1.23 2.24-2.52 4.62-2.52 4.94 0 5.86 3.25 5.86 7.47V20h-4.88v-4.9c0-1.17-.02-2.68-1.63-2.68-1.63 0-1.88 1.27-1.88 2.59V20H9.75z" />
+                    </svg>
+                    View more certificates on LinkedIn
+                </a>
             </section>
 
             {/* Certificate image modal */}
