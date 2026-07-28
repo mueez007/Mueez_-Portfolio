@@ -2,8 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import ShinyText from "./ShinyText";
 import "../styles/Achievements.css";
 
-/* ── achievement data (from resume) ────────────────────────── */
+/* ── achievement data ────────────────────────────────────── */
 const ACHIEVEMENTS = [
+    {
+        id: "carpulse-hackathon",
+        title: "Top Standout Project – CarPulse AI",
+        org: "Hebbale Academy",
+        year: "2025",
+        description:
+            "After an intense 3-day innovation sprint at Hebbale Academy, CarPulse AI was recognized as the TOP standout project among 23 teams. Built an enterprise-grade Agentic AI system that manages an entire vehicle service center using natural language commands — handling full CRUD for service logs, mechanic database management, intelligent file extraction (Excel, CSV, PDF, image), automated reminders & service scheduling, and real-time analytics. Achieved 70% less manual work with automated service lifecycle and streamlined workshop operations.",
+        frontpage: "/achievements/carpulse-hackathon/frontpage.jpg",
+        images: ["/achievements/carpulse-hackathon/frontpage.jpg", "/achievements/carpulse-hackathon/1.jpg", "/achievements/carpulse-hackathon/2.jpg", "/achievements/carpulse-hackathon/3.jpg"],
+        link: null,
+        color: "#f59e0b",
+        icon: "🏆",
+    },
     {
         id: "ml-quiz",
         title: "First Place – Machine Learning Quiz Competition",
@@ -11,9 +24,10 @@ const ACHIEVEMENTS = [
         year: "2025",
         description:
             "Secured 1st place in the Machine Learning Quiz Competition at Maharaja Institute of Technology Mysore (Aug 2025), organized by the Unstop Campus Ambassador Program.",
-        images: ["/projects/agriassist.png", "/projects/portfolio.png", "/projects/neural-style.png"],
+        frontpage: "/achievements/ml-quiz/frontpage.jpg",
+        images: ["/achievements/ml-quiz/frontpage.jpg"],
         link: null,
-        color: "#f59e0b",
+        color: "#eab308",
         icon: "🥇",
     },
     {
@@ -23,7 +37,8 @@ const ACHIEVEMENTS = [
         year: "2026",
         description:
             'Authored and presented a research paper titled "CarPulse Agent" at the National-Level Conference on Frontiers in AI-Based Applications.',
-        images: ["/projects/portfolio.png", "/projects/chat-app.png", "/projects/agriassist.png"],
+        frontpage: "/achievements/conference/frontpage.jpg",
+        images: ["/achievements/conference/frontpage.jpg", "/achievements/conference/1.jpg", "/achievements/conference/2.jpg"],
         link: null,
         color: "#3b82f6",
         icon: "📄",
@@ -35,7 +50,8 @@ const ACHIEVEMENTS = [
         year: "2026",
         description:
             "Secured 3rd place in the DroneX, Drone Technology Challenge at INNOVOTSAVA 2026 (June 2026), organized by the Stack Forge Club, Maharaja Institute of Technology Mysore.",
-        images: ["/projects/neural-style.png", "/projects/agriassist.png", "/projects/portfolio.png"],
+        frontpage: "/achievements/dronex/frontpage.png",
+        images: ["/achievements/dronex/frontpage.png", "/achievements/dronex/1.jpg", "/achievements/dronex/2.jpg", "/achievements/dronex/3.jpg"],
         link: null,
         color: "#10b981",
         icon: "🥉",
@@ -46,21 +62,14 @@ const ACHIEVEMENTS = [
    ACHIEVEMENT CARD (used in marquee)
    ═══════════════════════════════════════════════════════════════ */
 function AchievementCard({ achievement, onClick }) {
-    const validImages = achievement.images.filter(Boolean);
-    const [current, setCurrent] = useState(0);
-
-    useEffect(() => {
-        if (validImages.length <= 1) return;
-        const interval = setInterval(() => {
-            setCurrent((c) => (c + 1) % validImages.length);
-        }, 2000 + Math.random() * 1000);
-        return () => clearInterval(interval);
-    }, [validImages.length]);
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
         <div
             className="achievement-card"
             onClick={() => onClick(achievement)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === "Enter" && onClick(achievement)}
@@ -73,13 +82,17 @@ function AchievementCard({ achievement, onClick }) {
                 }}
             />
 
-            {validImages.length > 0 ? (
-                <div className="achievement-card-image">
-                    <img src={validImages[current]} alt={achievement.title} />
+            {/* Frontpage image */}
+            <div className="achievement-card-image">
+                <img
+                    src={achievement.frontpage}
+                    alt={achievement.title}
+                    className={isHovered ? "zoomed" : ""}
+                />
+                <div className="achievement-card-image-overlay">
+                    <span className="achievement-card-icon">{achievement.icon}</span>
                 </div>
-            ) : (
-                <div className="achievement-icon">{achievement.icon}</div>
-            )}
+            </div>
 
             <div className="achievement-card-body">
                 <span className="achievement-year">{achievement.year}</span>
@@ -103,6 +116,7 @@ function AchievementCard({ achievement, onClick }) {
 function AchievementCarousel({ images, title }) {
     const validImages = images.filter(Boolean);
     const [current, setCurrent] = useState(0);
+    const [slideDir, setSlideDir] = useState("none");
 
     if (validImages.length === 0) {
         return (
@@ -117,18 +131,28 @@ function AchievementCarousel({ images, title }) {
         );
     }
 
+    const goTo = (idx, dir) => {
+        setSlideDir(dir);
+        setTimeout(() => {
+            setCurrent(idx);
+            setSlideDir("none");
+        }, 200);
+    };
+
     return (
         <div className="achievement-carousel">
-            <img
-                src={validImages[current]}
-                alt={`${title} - ${current + 1}`}
-                className="achievement-carousel-img"
-            />
+            <div className={`achievement-carousel-img-wrapper ${slideDir !== "none" ? `slide-${slideDir}` : ""}`}>
+                <img
+                    src={validImages[current]}
+                    alt={`${title} - ${current + 1}`}
+                    className="achievement-carousel-img"
+                />
+            </div>
             {validImages.length > 1 && (
                 <>
                     <button
                         className="ach-carousel-btn ach-prev"
-                        onClick={() => setCurrent((c) => (c - 1 + validImages.length) % validImages.length)}
+                        onClick={() => goTo((current - 1 + validImages.length) % validImages.length, "right")}
                     >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                             <polyline points="15 18 9 12 15 6" />
@@ -136,12 +160,24 @@ function AchievementCarousel({ images, title }) {
                     </button>
                     <button
                         className="ach-carousel-btn ach-next"
-                        onClick={() => setCurrent((c) => (c + 1) % validImages.length)}
+                        onClick={() => goTo((current + 1) % validImages.length, "left")}
                     >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                             <polyline points="9 6 15 12 9 18" />
                         </svg>
                     </button>
+
+                    {/* Dots */}
+                    <div className="ach-carousel-dots">
+                        {validImages.map((_, i) => (
+                            <span
+                                key={i}
+                                className={`ach-carousel-dot ${i === current ? "active" : ""}`}
+                                onClick={() => goTo(i, i > current ? "left" : "right")}
+                            />
+                        ))}
+                    </div>
+
                     <div className="ach-carousel-counter">
                         {current + 1} / {validImages.length}
                     </div>
@@ -240,6 +276,9 @@ export default function Achievements() {
                                 <span className="achievement-modal-year">{activeAchievement.year}</span>
                                 <h2 className="achievement-modal-title">{activeAchievement.title}</h2>
                                 <span className="achievement-modal-org">{activeAchievement.org}</span>
+
+                                <div className="achievement-modal-divider" />
+
                                 <p className="achievement-modal-desc">{activeAchievement.description}</p>
 
                                 {activeAchievement.link && (
