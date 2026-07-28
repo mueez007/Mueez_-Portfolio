@@ -1,13 +1,15 @@
 .about-section {
-  position: relative;
-  padding: 80px 10%;
-  margin-top: -60px; /* Pulls closer to CurvedLoop */
+  min-height: 100vh;
   background: black;
 
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 80px;
+
+  /* FIX SPACING */
+  padding: 0 10%;
+  margin-top: -40px;
 
   color: white;
 }
@@ -16,16 +18,15 @@
 .about-photo {
   position: relative;
   opacity: 0;
-  transform: translateX(-60px);
   transition: 1s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  will-change: opacity;
 }
 
 .about-photo.show {
   opacity: 1;
-  transform: translateX(0);
 }
 
 .about-photo img {
@@ -63,14 +64,13 @@
 .about-text {
   max-width: 520px;
   opacity: 0;
-  transform: translateX(60px);
   transition: 1s ease;
   position: relative;
+  will-change: opacity;
 }
 
 .about-text.show {
   opacity: 1;
-  transform: translateX(0);
 }
 
 /* SUBTLE TEXT GLOW BG */
@@ -99,13 +99,5 @@
     flex-direction: column;
     text-align: center;
     gap: 40px;
-  }
-
-  .about-text {
-    transform: translateY(40px);
-  }
-
-  .about-text.show {
-    transform: translateY(0);
   }
 }

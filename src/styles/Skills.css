@@ -2,25 +2,23 @@
    SKILLS SECTION
    ═══════════════════════════════════════════════════════════ */
 .skills-section {
-  position: relative;
-  background: #050505;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 5%;
-  margin-top: -20px;
-  overflow: hidden;
+    position: relative;
+    min-height: 100vh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 5% 80px;
+    overflow: hidden;
+    will-change: opacity;
 
-  /* scroll-reveal */
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease, transform 1s ease;
+    /* scroll-reveal */
+    opacity: 0;
+    transition: opacity 1s ease;
 }
 
 .skills-section.show {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
 }
 
 /* ── ambient glow ──────────────────────────────────────────── */

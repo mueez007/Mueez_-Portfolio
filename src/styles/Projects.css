@@ -3,22 +3,22 @@
    ═══════════════════════════════════════════════════════════ */
 .projects-section {
     position: relative;
+    min-height: 100vh;
     background: #000;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 100px 5% 80px;
     overflow: hidden;
+    will-change: opacity;
 
     /* scroll-reveal */
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s ease;
 }
 
 .projects-section.show {
     opacity: 1;
-    transform: translateY(0);
 }
 
 /* ── ambient glow ──────────────────────────────────────────── */

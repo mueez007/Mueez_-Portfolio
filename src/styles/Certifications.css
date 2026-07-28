@@ -3,6 +3,7 @@
    ═══════════════════════════════════════════════════════════ */
 .cert-section {
     position: relative;
+    min-height: 80vh;
     background: #000;
     display: flex;
     flex-direction: column;
