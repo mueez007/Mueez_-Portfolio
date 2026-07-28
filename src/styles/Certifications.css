@@ -10,16 +10,15 @@
     align-items: center;
     padding: 100px 5% 80px;
     overflow: hidden;
+    will-change: opacity;
 
-    /* scroll-reveal */
+    /* scroll-reveal — opacity only to prevent layout shifts */
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s ease;
 }
 
 .cert-section.show {
     opacity: 1;
-    transform: translateY(0);
 }
 
 /* ── ambient glow ──────────────────────────────────────────── */
