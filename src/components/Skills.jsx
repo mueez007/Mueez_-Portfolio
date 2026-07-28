@@ -3,42 +3,52 @@ import * as THREE from "three";
 import ShinyText from "./ShinyText";
 import "../styles/Skills.css";
 
-/* ── skill data ─────────────────────────────────────────────── */
+/* ── skill data (from resume) ──────────────────────────────── */
 const SKILLS = [
+  { name: "Python", color: "#3776ab" },
+  { name: "C", color: "#555555" },
   { name: "JavaScript", color: "#f7df1e" },
+  { name: "React", color: "#61dafb" },
+  { name: "Next.js", color: "#ffffff" },
   { name: "HTML", color: "#e34f26" },
   { name: "CSS", color: "#264de4" },
-  { name: "React", color: "#61dafb" },
-  { name: "Node.js", color: "#68a063" },
-  { name: "Python", color: "#3776ab" },
+  { name: "PyTorch", color: "#ee4c2c" },
+  { name: "TensorFlow", color: "#ff6f00" },
+  { name: "Keras", color: "#d00000" },
+  { name: "Scikit-learn", color: "#f7931e" },
+  { name: "Django", color: "#092e20" },
+  { name: "FastAPI", color: "#009688" },
+  { name: "Flask", color: "#ffffff" },
+  { name: "Docker", color: "#2496ed" },
   { name: "Git", color: "#f05032" },
   { name: "MongoDB", color: "#47a248" },
-  { name: "TypeScript", color: "#3178c6" },
-  { name: "Figma", color: "#a259ff" },
-  { name: "Java", color: "#ed8b00" },
-  { name: "C++", color: "#00599c" },
-  { name: "TensorFlow", color: "#ff6f00" },
-  { name: "Docker", color: "#2496ed" },
-  { name: "SQL", color: "#4479a1" },
+  { name: "PostgreSQL", color: "#336791" },
+  { name: "Firebase", color: "#ffca28" },
+  { name: "LangChain", color: "#00d4aa" },
 ];
 
 /* ── CDN icon URLs (devicon) ──────────────────────────────── */
 const SKILL_ICONS = {
+  Python: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  C: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
   JavaScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+  React: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+  "Next.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
   HTML: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
   CSS: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-  React: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  "Node.js": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  Python: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+  PyTorch: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg",
+  TensorFlow: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
+  Keras: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg",
+  "Scikit-learn": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg",
+  Django: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+  FastAPI: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+  Flask: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+  Docker: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
   Git: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
   MongoDB: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-  TypeScript: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-  Figma: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-  Java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-  "C++": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-  TensorFlow: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
-  Docker: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-  SQL: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+  PostgreSQL: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+  Firebase: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+  LangChain: null,
 };
 
 /* ── helper: create a text-label billboard sprite ───────────── */
@@ -48,7 +58,7 @@ function makeLabel(text) {
   canvas.height = 64;
   const ctx = canvas.getContext("2d");
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 28px system-ui, sans-serif";
+  ctx.font = "bold 28px 'Inter', system-ui, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(text, 128, 32);
@@ -62,7 +72,28 @@ function makeLabel(text) {
 /* ── helper: load a skill icon and apply as texture to a mesh ── */
 function applyLogoTexture(ball, skillName, fallbackColor) {
   const url = SKILL_ICONS[skillName];
-  if (!url) return;
+  if (!url) {
+    // Fallback: draw initial letter on canvas
+    const size = 256;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#181818";
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = fallbackColor;
+    ctx.font = "bold 120px 'Inter', system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(skillName[0], size / 2, size / 2);
+    const tex = new THREE.CanvasTexture(canvas);
+    ball.material.map = tex;
+    ball.material.color.set(0xffffff);
+    ball.material.emissive.set(0x000000);
+    ball.material.emissiveIntensity = 0;
+    ball.material.needsUpdate = true;
+    return;
+  }
 
   const img = new Image();
   img.crossOrigin = "anonymous";
@@ -106,6 +137,9 @@ function applyLogoTexture(ball, skillName, fallbackColor) {
 
     const tex = new THREE.CanvasTexture(canvas);
     ball.material.map = tex;
+    ball.material.color.set(0xffffff);
+    ball.material.emissive.set(0x000000);
+    ball.material.emissiveIntensity = 0;
     ball.material.needsUpdate = true;
   };
   img.src = url;
@@ -339,7 +373,7 @@ export default function Skills() {
       <div className="skills-glow" />
 
       <h2 className="skills-heading">
-        <ShinyText text="Skills" speed={1} shineColor="#fff" color="#555" />
+        <ShinyText text="Skills" speed={1.5} shineColor="#c084fc" color="#555" />
       </h2>
 
       <p className="skills-sub">

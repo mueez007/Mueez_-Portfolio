@@ -36,29 +36,31 @@ export default function About() {
         <h2>
           <ShinyText
             text="About Me"
-            speed={1}
-            shineColor="#fff"
+            speed={1.5}
+            shineColor="#c084fc"
             color="#555"
           />
         </h2>
 
         <p>
-          I'm Mohammed Huzaif Mueez — an AI/ML developer and full-stack builder
-          with a passion for turning ideas into intelligent, production-ready
-          applications.
+          I'm Mohammed Huzaif Mueez — a B.E. student in Computer Science
+          (Artificial Intelligence &amp; Machine Learning) at Maharaja Institute
+          of Technology, Mysore with hands-on experience in Generative AI,
+          Computer Vision, Robotics, and Autonomous Systems.
         </p>
 
         <p>
-          From deep-learning models to sleek React interfaces, I love working
-          across the entire stack. I specialise in Python, JavaScript, and modern
-          frameworks like TensorFlow, Node.js, and React to craft experiences
-          that feel both powerful and effortless.
+          Skilled in PyTorch, Large Language Models (LLMs), Agentic AI,
+          Explainable AI, and Retrieval-Augmented Generation (RAG). I build
+          full-stack AI-powered applications using Python, Django, FastAPI,
+          React.js, and modern ML/DL frameworks like TensorFlow, Keras, and
+          Scikit-learn.
         </p>
 
         <p>
-          When I'm not coding, you'll find me exploring the latest in generative
-          AI, contributing to open-source, or designing cinematic UI concepts
-          that push creative boundaries.
+          Passionate about building intelligent systems and autonomous
+          technologies that solve real-world problems — from AI-powered farming
+          assistants to autonomous delivery drones.
         </p>
       </div>
     </section>

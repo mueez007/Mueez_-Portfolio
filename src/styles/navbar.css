@@ -11,8 +11,8 @@
     align-items: center;
 
     backdrop-filter: blur(14px);
-    background: rgba(10, 10, 10, 0.45);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 10, 10, 0.55);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 
     z-index: 999;
 }
@@ -20,23 +20,34 @@
 /* LOGO */
 .nav-logo {
     font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    font-weight: 700;
+    letter-spacing: 3px;
     color: white;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    background: linear-gradient(135deg, #fff 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* LINKS */
 .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 32px;
 }
 
 .nav-links a {
     position: relative;
     text-decoration: none;
-    color: #ddd;
-    font-size: 15px;
-    letter-spacing: 1px;
+    color: #ccc;
+    font-size: 14px;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #fff;
 }
 
 /* HOVER UNDERLINE */
@@ -46,9 +57,10 @@
     bottom: -6px;
     left: 0;
     width: 0%;
-    height: 1px;
-    background: white;
-    transition: 0.3s;
+    height: 2px;
+    background: linear-gradient(90deg, #a855f7, #c084fc);
+    border-radius: 2px;
+    transition: width 0.3s ease;
 }
 
 .nav-links a:hover::after {
@@ -60,30 +72,48 @@
     display: none;
     flex-direction: column;
     cursor: pointer;
+    gap: 5px;
 }
 
 .nav-toggle span {
     width: 22px;
     height: 2px;
     background: white;
-    margin: 4px 0;
     transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Hamburger open state */
+.nav-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* MOBILE */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .nav-links {
         position: absolute;
         top: 64px;
         right: 0;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(5, 5, 10, 0.97);
+        backdrop-filter: blur(20px);
         flex-direction: column;
-        width: 200px;
-        padding: 20px;
+        width: 220px;
+        padding: 24px;
         gap: 20px;
+        border-left: 1px solid rgba(168, 85, 247, 0.1);
+        border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+        border-radius: 0 0 0 16px;
 
         transform: translateX(100%);
-        transition: 0.3s;
+        transition: transform 0.3s ease;
     }
 
     .nav-links.open {

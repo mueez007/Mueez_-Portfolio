@@ -8,6 +8,8 @@ import Spline from "@splinetool/react-spline";
 import About from "./About";
 import Skills from "./Skills";
 import Projects from "./Projects";
+import Certifications from "./Certifications";
+import Achievements from "./Achievements";
 import Contact from "./Contact";
 import CurvedLoop from "./CurvedLoop";
 
@@ -49,18 +51,18 @@ export default function MainPage() {
             <ShinyText
               text="Mohammed Huzaif Mueez"
               speed={2}
-              shineColor="#fff"
+              shineColor="#c084fc"
               color="#555"
             />
           </h1>
 
           <p className="main-subtitle">
-            AI/ML Developer • Full-Stack Builder
+            AI/ML Developer • Full-Stack Builder • Robotics Enthusiast
           </p>
 
           <p className="main-desc">
             I design and build intelligent systems,
-            futuristic interfaces, and AI-powered
+            autonomous drones, and AI-powered
             digital experiences.
           </p>
 
@@ -137,13 +139,30 @@ export default function MainPage() {
       </section>
 
       {/* Curved Loop */}
-      <CurvedLoop marqueeText="AI ✦ ML ✦ FUTURE ✦ INNOVATION ✦" />
+      <CurvedLoop marqueeText="AI ✦ ML ✦ FUTURE ✦ INNOVATION ✦ ROBOTICS ✦ DRONES ✦" />
+
+      {/* Neon divider */}
+      <div className="neon-divider" />
 
       <About />
 
+      <div className="neon-divider" />
+
       <Skills />
 
+      <div className="neon-divider" />
+
       <Projects />
+
+      <div className="neon-divider" />
+
+      <Certifications />
+
+      <div className="neon-divider" />
+
+      <Achievements />
+
+      <div className="neon-divider" />
 
       <Contact />
     </>

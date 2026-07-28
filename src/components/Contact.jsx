@@ -12,8 +12,8 @@ const INFO = [
             </svg>
         ),
         label: "Email",
-        value: "huzaifmueez@gmail.com",
-        href: "mailto:huzaifmueez@gmail.com",
+        value: "mueezmueez9@gmail.com",
+        href: "mailto:mueezmueez9@gmail.com",
     },
     {
         icon: (
@@ -22,8 +22,8 @@ const INFO = [
             </svg>
         ),
         label: "WhatsApp",
-        value: "+91 98765 43210",
-        href: "https://wa.me/919876543210",
+        value: "+91 8660755789",
+        href: "https://wa.me/918660755789",
     },
     {
         icon: (
@@ -33,7 +33,7 @@ const INFO = [
             </svg>
         ),
         label: "Location",
-        value: "Hyderabad, India",
+        value: "Mysore, India",
         href: null,
     },
     {

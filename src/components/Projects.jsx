@@ -2,72 +2,115 @@ import { useEffect, useRef, useState } from "react";
 import ShinyText from "./ShinyText";
 import "../styles/Projects.css";
 
-/* ── project data ───────────────────────────────────────────── */
+/* ── project data (from resume) ────────────────────────────── */
 const PROJECTS = [
     {
-        id: "agriassist",
-        title: "AgriAssist AI",
-        desc: "AI-powered agriculture chatbot with Gemini API integration, providing crop analysis and smart farming recommendations.",
-        longDesc: "AgriAssist AI is a full-stack intelligent agriculture assistant that leverages Google's Gemini API to provide real-time crop analysis, disease detection, and smart farming recommendations. The system features a conversational chatbot interface, support for image-based crop health analysis, and personalized farming schedules based on local weather and soil data. Built with a React frontend and Node.js/Express backend with MongoDB for persistent user data and conversation history.",
-        tags: ["React", "Node.js", "Gemini API", "MongoDB"],
-        image: "/projects/agriassist.png",
+        id: "krishi-sakhi",
+        title: "Krishi Sakhi V2.0",
+        subtitle: "AI-Powered Digital Farming Assistant",
+        year: "2025",
+        desc: "Full-stack AI platform for crop recommendation, plant disease detection, and farmer assistance using Django, React.js, and TensorFlow.",
+        longDesc: "Built a full-stack AI platform for crop recommendation, plant disease detection, and farmer assistance using Django, React.js, and TensorFlow. Developed a CNN-based disease detection model achieving 81% test accuracy and integrated Random Forest-based crop recommendation using soil and weather data with geolocation-based recommendations. Integrated a Gemini-powered agriculture chatbot and secure REST APIs with JWT authentication for intelligent farmer support.",
+        tags: ["Python", "Django", "DRF", "React.js", "TensorFlow/Keras", "Scikit-learn", "Gemini API"],
+        images: ["/projects/agriassist.png", "/projects/agriassist.png", "/projects/agriassist.png"],
         github: "https://github.com/mueez007",
         linkedin: "https://www.linkedin.com/in/mohammed-huzaif-mueez-5bb7892b2/",
     },
     {
-        id: "portfolio",
-        title: "Portfolio 2026",
-        desc: "Cinematic portfolio featuring Spline 3D scenes, GSAP animations, and interactive particle effects.",
-        longDesc: "A premium cinematic portfolio built with React and cutting-edge web technologies. Features immersive Spline 3D scenes as hero backgrounds, GSAP-powered scroll animations, Three.js interactive skill spheres, and custom WebGL particle effects. The design follows a dark luxury aesthetic with purple accent lighting, glassmorphism cards, and smooth micro-interactions throughout. Every element is craft-animated to create a premium digital experience.",
-        tags: ["React", "Spline", "GSAP", "Three.js"],
-        image: "/projects/portfolio.png",
+        id: "carpulse-ai",
+        title: "CarPulse AI",
+        subtitle: "Agentic Vehicle Service Management System",
+        year: "2025",
+        desc: "AI-powered vehicle service management platform with automated logging, analytics, and interactive dashboards.",
+        longDesc: "Developed an AI-powered vehicle service management platform with automated logging, analytics, and interactive dashboards. Built an agentic AI system capable of executing backend tools through natural language commands and voice-based logging. Implemented ML-based service cost prediction with secure JWT authentication using FastAPI and React.js.",
+        tags: ["FastAPI", "React.js", "PostgreSQL", "Scikit-learn", "Docker"],
+        images: ["/projects/portfolio.png", "/projects/portfolio.png", "/projects/portfolio.png"],
         github: "https://github.com/mueez007",
         linkedin: "https://www.linkedin.com/in/mohammed-huzaif-mueez-5bb7892b2/",
     },
     {
-        id: "neural-style",
-        title: "Neural Style Transfer",
-        desc: "Deep learning application that applies artistic styles to photographs using convolutional neural networks.",
-        longDesc: "A deep learning application that implements neural style transfer using VGG-19 convolutional neural networks. Users can upload any photograph and apply the artistic style of famous paintings — from Van Gogh's Starry Night to Picasso's cubist works. The system uses iterative optimization to blend content and style features at multiple network layers. Built with TensorFlow and OpenCV, featuring a web-based UI for real-time style preview and parameter tuning.",
-        tags: ["Python", "TensorFlow", "CNN", "OpenCV"],
-        image: "/projects/neural-style.png",
+        id: "edutrack",
+        title: "EduTrack",
+        subtitle: "College ERP & Academic Management System",
+        year: "2025",
+        desc: "Multi-role college ERP application for students, teachers, and administrators with secure role-based authentication.",
+        longDesc: "Developed a multi-role college ERP application for students, teachers, and administrators with secure role-based authentication. Implemented attendance tracking, marks management, and automated academic performance calculation systems. Built dashboard interfaces and scalable backend APIs for efficient academic data management and analytics.",
+        tags: ["Flutter", "Dart", "Firebase"],
+        images: ["/projects/chat-app.png", "/projects/chat-app.png", "/projects/chat-app.png"],
         github: "https://github.com/mueez007",
         linkedin: "https://www.linkedin.com/in/mohammed-huzaif-mueez-5bb7892b2/",
     },
     {
-        id: "chat-app",
-        title: "Real-Time Chat App",
-        desc: "Full-stack chat application with WebSocket support, message history, and user authentication.",
-        longDesc: "A production-grade real-time messaging application with WebSocket-powered instant messaging, typing indicators, read receipts, and online presence tracking. Features include end-to-end encrypted message storage, JWT-based authentication, file/image sharing, and conversation history with infinite scroll. The backend uses Express with Socket.io for real-time events and MongoDB for persistent message storage.",
-        tags: ["React", "Socket.io", "Express", "JWT"],
-        image: "/projects/chat-app.png",
-        github: "https://github.com/mueez007",
-        linkedin: "https://www.linkedin.com/in/mohammed-huzaif-mueez-5bb7892b2/",
-    },
-    {
-        id: "task-manager",
-        title: "Smart Task Manager",
-        desc: "AI-enhanced task management tool with priority suggestions and auto-scheduling powered by ML models.",
-        longDesc: "An intelligent task management platform that uses machine learning to automatically prioritize tasks, suggest optimal scheduling, and predict completion times. Features a Kanban board interface with drag-and-drop, burn-up charts, AI-generated daily plans, and team collaboration tools. The ML models are trained on user behavior patterns to provide increasingly accurate task duration estimates and priority recommendations.",
-        tags: ["TypeScript", "Next.js", "Python", "FastAPI"],
-        image: "/projects/task-manager.png",
-        github: "https://github.com/mueez007",
-        linkedin: "https://www.linkedin.com/in/mohammed-huzaif-mueez-5bb7892b2/",
-    },
-    {
-        id: "blockchain",
-        title: "Blockchain Wallet",
-        desc: "Decentralised crypto wallet with transaction tracking, QR payments, and multi-chain support.",
-        longDesc: "A decentralised cryptocurrency wallet application supporting multiple blockchain networks including Ethereum, Polygon, and BSC. Features include QR code-based payments, detailed transaction history with gas analytics, portfolio tracking with real-time price charts, and secure private key management using hardware encryption. Built with React and Web3.js/Ethers.js for blockchain interactions, with Solidity smart contracts for custom token operations.",
-        tags: ["React", "Solidity", "Web3.js", "Ethers"],
-        image: "/projects/blockchain.png",
+        id: "aerioai-drone",
+        title: "AerioAI Drone",
+        subtitle: "AI-Powered Autonomous Delivery & Surveillance UAV",
+        year: "2026",
+        desc: "AI-powered autonomous drone for intelligent aerial surveillance, object detection, classification, and smart payload delivery.",
+        longDesc: "Developed an AI-powered autonomous drone for intelligent aerial surveillance, object detection, object classification, smart payload delivery, and emergency response applications. Integrated Raspberry Pi 4, SpeedyBee F405 V5 Flight Controller, BN-880 GPS Module, 55A 4-in-1 ESC, 4114-11 320KV Brushless Motors, telemetry systems, and onboard vision pipelines for autonomous navigation and real-time decision-making. Built computer vision and AI workflows using OpenCV, Raspberry Pi Camera, and Gemini API, enabling real-time aerial scene understanding, object detection, classification, AI-generated scene summarization, and dashboard-based mission monitoring. Implemented GPS-based waypoint navigation, Return-to-Home (RTH), autonomous flight control, and intelligent mission execution through INAV-compatible flight systems.",
+        tags: ["Python", "Raspberry Pi", "OpenCV", "SpeedyBee F405 V5", "BN-880 GPS", "Gemini API", "INAV"],
+        images: ["/projects/neural-style.png", "/projects/neural-style.png", "/projects/neural-style.png"],
         github: "https://github.com/mueez007",
         linkedin: "https://www.linkedin.com/in/mohammed-huzaif-mueez-5bb7892b2/",
     },
 ];
 
 /* ═══════════════════════════════════════════════════════════════
-   COMPONENT
+   IMAGE CAROUSEL COMPONENT
+   ═══════════════════════════════════════════════════════════════ */
+function ImageCarousel({ images, title }) {
+    const [current, setCurrent] = useState(0);
+
+    const prev = (e) => {
+        e.stopPropagation();
+        setCurrent((c) => (c - 1 + images.length) % images.length);
+    };
+
+    const next = (e) => {
+        e.stopPropagation();
+        setCurrent((c) => (c + 1) % images.length);
+    };
+
+    return (
+        <div className="carousel-container">
+            <img
+                src={images[current]}
+                alt={`${title} - ${current + 1}`}
+                className="carousel-image"
+            />
+
+            {images.length > 1 && (
+                <>
+                    <button className="carousel-btn carousel-prev" onClick={prev} aria-label="Previous image">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </button>
+                    <button className="carousel-btn carousel-next" onClick={next} aria-label="Next image">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="9 6 15 12 9 18" />
+                        </svg>
+                    </button>
+
+                    <div className="carousel-dots">
+                        {images.map((_, i) => (
+                            <span
+                                key={i}
+                                className={`carousel-dot ${i === current ? "active" : ""}`}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setCurrent(i);
+                                }}
+                            />
+                        ))}
+                    </div>
+                </>
+            )}
+        </div>
+    );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROJECTS COMPONENT
    ═══════════════════════════════════════════════════════════════ */
 export default function Projects() {
     const sectionRef = useRef(null);
@@ -110,7 +153,7 @@ export default function Projects() {
                 <div className="projects-glow" />
 
                 <h2 className="projects-heading">
-                    <ShinyText text="Projects" speed={1} shineColor="#fff" color="#555" />
+                    <ShinyText text="Projects" speed={1.5} shineColor="#c084fc" color="#555" />
                 </h2>
 
                 <p className="projects-sub">
@@ -124,7 +167,7 @@ export default function Projects() {
                             key={p.id}
                             className="project-card reveal-card"
                             ref={(el) => (cardRefs.current[i] = el)}
-                            style={{ transitionDelay: `${i * 0.1}s` }}
+                            style={{ transitionDelay: `${i * 0.12}s` }}
                             onClick={() => openProject(p)}
                             role="button"
                             tabIndex={0}
@@ -132,13 +175,18 @@ export default function Projects() {
                         >
                             {/* thumbnail */}
                             <div className="card-thumb">
-                                <img src={p.image} alt={p.title} loading="lazy" />
+                                <img src={p.images[0]} alt={p.title} loading="lazy" />
                             </div>
 
                             {/* accent bar */}
                             <span className="card-accent" />
 
+                            {/* neon border effect */}
+                            <span className="card-neon-border" />
+
+                            <div className="card-year">{p.year}</div>
                             <h3 className="card-title">{p.title}</h3>
+                            <p className="card-subtitle">{p.subtitle}</p>
                             <p className="card-desc">{p.desc}</p>
 
                             <div className="card-tags">
@@ -183,14 +231,16 @@ export default function Projects() {
                         </button>
 
                         <div className="modal-body">
-                            {/* LEFT: image */}
+                            {/* LEFT: image carousel */}
                             <div className="modal-image">
-                                <img src={activeProject.image} alt={activeProject.title} />
+                                <ImageCarousel images={activeProject.images} title={activeProject.title} />
                             </div>
 
                             {/* RIGHT: info */}
                             <div className="modal-info">
+                                <span className="modal-year">{activeProject.year}</span>
                                 <h2 className="modal-title">{activeProject.title}</h2>
+                                <p className="modal-subtitle-text">{activeProject.subtitle}</p>
 
                                 <div className="modal-tags">
                                     {activeProject.tags.map((t) => (
