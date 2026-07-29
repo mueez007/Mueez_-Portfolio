@@ -81,8 +81,6 @@ function AchievementCard({ achievement, onClick }) {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && onClick(achievement)}
         >
             {/* Colored top accent */}
             <div

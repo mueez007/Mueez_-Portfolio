@@ -17,6 +17,8 @@ export default function About() {
 
     if (imgRef.current) observer.observe(imgRef.current);
     if (textRef.current) observer.observe(textRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
   return (

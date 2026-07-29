@@ -18,6 +18,11 @@ export default function MainPage() {
 
   useEffect(() => {
     setTimeout(() => setShow(true), 400);
+    // Clear any URL hash to prevent the browser from auto-scrolling
+    // to a section during layout reflows (e.g., Spline loading, animations)
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
   }, []);
 
   return (
@@ -89,7 +94,7 @@ export default function MainPage() {
 
             <a
               href="/resume.pdf"
-              download
+              download="Mohammed_Huzaif_Mueez_Resume.pdf"
               className="btn-download"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
